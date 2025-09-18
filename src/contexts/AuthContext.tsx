@@ -60,6 +60,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       if (error) throw error;
    };
 
+   const signInWithGoogle = async () => {
+      const { error } = await supabase.auth.signInWithOAuth({
+         provider: "google",
+         options: {
+            redirectTo: `${window.location.origin}/vault`,
+         },
+      });
+      if (error) throw error;
+   };
+
    const signOut = async () => {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
@@ -69,6 +79,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       user,
       signIn,
       signUp,
+      signInWithGoogle,
       signOut,
       loading,
    };

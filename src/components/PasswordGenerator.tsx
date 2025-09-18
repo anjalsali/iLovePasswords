@@ -39,14 +39,7 @@ const PasswordGenerator: React.FC = () => {
    // Generate initial password on mount
    React.useEffect(() => {
       handleGeneratePassword();
-   }, []);
-
-   // Regenerate password when options change
-   React.useEffect(() => {
-      if (password) {
-         handleGeneratePassword();
-      }
-   }, [options, handleGeneratePassword]);
+   }, [handleGeneratePassword]);
 
    return (
       <div className="w-full max-w-2xl mx-auto">
