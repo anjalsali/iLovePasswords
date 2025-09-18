@@ -131,7 +131,7 @@ const Home: React.FC = () => {
                         </Card>
                      </motion.div>
                   )}
-               </div>
+               </motion.div>
             </div>
          </main>
 
