@@ -3,9 +3,8 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import Vault from "../components/Vault";
 import { Link } from "react-router-dom";
-import { Shield, ArrowLeft, LogOut } from "lucide-react";
+import { Shield, LogOut } from "lucide-react";
 import { Button } from "../components/ui/Button";
-import { motion } from "framer-motion";
 
 const VaultPage: React.FC = () => {
    const { user, signOut, loading } = useAuth();

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { User } from "@supabase/supabase-js";
+import type { User } from "@supabase/supabase-js";
 import { supabase } from "../lib/supabase";
-import { AuthContextType } from "../types";
+import type { AuthContextType } from "../types";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -36,7 +36,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       // Listen for auth changes
       const {
          data: { subscription },
-      } = supabase.auth.onAuthStateChange(async (event, session) => {
+      } = supabase.auth.onAuthStateChange(async (_event, session) => {
          setUser(session?.user ?? null);
          setLoading(false);
       });

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/Card";
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
-import { DecryptedVaultEntry } from "../types";
+import type { DecryptedVaultEntry } from "../types";
 import { motion } from "framer-motion";
 import { Save, X } from "lucide-react";
 
