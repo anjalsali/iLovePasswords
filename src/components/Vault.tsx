@@ -9,7 +9,7 @@ import { supabase } from "../lib/supabase";
 import { encryptPassword, decryptPassword } from "../lib/crypto";
 import type { DecryptedVaultEntry, PasswordCategory } from "../types";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Search, Lock, Key, Filter, Download, Upload, Tag, Folder, Shield, CreditCard, ShoppingBag, Gamepad2, Settings, Package, Grid, List } from "lucide-react";
+import { Plus, Search, Lock, Key, Filter, Tag, Folder, Shield, CreditCard, ShoppingBag, Gamepad2, Settings, Package, Grid, List } from "lucide-react";
 
 const Vault: React.FC = () => {
    const { user } = useAuth();
