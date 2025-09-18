@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/Card";
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
@@ -7,7 +7,7 @@ import VaultForm from "./VaultForm";
 import { useAuth } from "../contexts/AuthContext";
 import { supabase } from "../lib/supabase";
 import { encryptPassword, decryptPassword } from "../lib/crypto";
-import { VaultEntry as VaultEntryType, DecryptedVaultEntry } from "../types";
+import type { DecryptedVaultEntry } from "../types";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Search, Lock, Key } from "lucide-react";
 
@@ -38,7 +38,7 @@ const Vault: React.FC = () => {
          setError("");
          await loadVaultEntries(masterPassword);
          setIsUnlocked(true);
-      } catch (error: any) {
+      } catch (error: unknown) {
          setError("Invalid master password or failed to decrypt vault");
          console.error("Unlock error:", error);
       } finally {
@@ -121,8 +121,8 @@ const Vault: React.FC = () => {
 
          setShowForm(false);
          setEditingEntry(null);
-      } catch (error: any) {
-         setError("Failed to save entry: " + error.message);
+      } catch (error: unknown) {
+         setError("Failed to save entry: " + (error instanceof Error ? error.message : "Unknown error"));
          console.error("Save error:", error);
       } finally {
          setLoading(false);
@@ -136,8 +136,8 @@ const Vault: React.FC = () => {
          if (error) throw error;
 
          setEntries((prev) => prev.filter((entry) => entry.id !== id));
-      } catch (error: any) {
-         setError("Failed to delete entry: " + error.message);
+      } catch (error: unknown) {
+         setError("Failed to delete entry: " + (error instanceof Error ? error.message : "Unknown error"));
          console.error("Delete error:", error);
       }
    };

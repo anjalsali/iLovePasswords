@@ -1,4 +1,4 @@
-# SecurePass - Password Generator & Vault
+# iLovePasswords - Secure Password Generator & Vault
 
 A modern, secure password generator and vault application built with React, Vite, TypeScript, and Supabase. Generate strong passwords and store them securely with client-side encryption.
 
@@ -60,7 +60,7 @@ A modern, secure password generator and vault application built with React, Vite
 
 ```bash
 git clone <your-repo-url>
-cd password-generator-react
+cd iLovePasswords
 ```
 
 ### 2. Install Dependencies
