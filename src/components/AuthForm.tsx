@@ -138,7 +138,7 @@ const AuthForm: React.FC = () => {
 
                   {/* Toggle Mode */}
                   <div className="text-center">
-                     <button type="button" onClick={toggleMode} className="text-sm text-primary hover:underline">
+                     <button type="button" onClick={toggleMode} className="text-sm text-blue-600 hover:underline">
                         {isSignUp ? "Already have an account? Sign in" : "Don't have an account? Sign up"}
                      </button>
                   </div>

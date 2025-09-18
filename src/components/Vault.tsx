@@ -162,8 +162,8 @@ const Vault: React.FC = () => {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-md">
                <Card>
                   <CardHeader className="text-center">
-                     <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                        <Lock className="w-8 h-8 text-primary" />
+                     <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <Lock className="w-8 h-8 text-blue-600" />
                      </div>
                      <CardTitle>Unlock Your Vault</CardTitle>
                      <CardDescription>Enter your master password to access your stored passwords</CardDescription>

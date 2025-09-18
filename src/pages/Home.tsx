@@ -17,7 +17,7 @@ const Home: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                <div className="flex justify-between items-center py-4">
                   <div className="flex items-center space-x-2">
-                     <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                     <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                         <Shield className="w-5 h-5 text-white" />
                      </div>
                      <span className="text-xl font-bold text-gray-900">SecurePass</span>
@@ -51,9 +51,11 @@ const Home: React.FC = () => {
             <div className="text-center mb-12">
                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
                   <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-4">
-                     Generate <span className="text-primary">Secure</span> Passwords
+                     Generate <span className="text-blue-600">Secure</span> Passwords
                   </h1>
-                  <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">Create strong, unique passwords and store them securely with client-side encryption. Your passwords never leave your device unencrypted.</p>
+                  <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                     Create strong, unique passwords and store them securely with client-side encryption. Your passwords never leave your device unencrypted.
+                  </p>
                </motion.div>
             </div>
 
@@ -115,9 +117,9 @@ const Home: React.FC = () => {
 
                   {!user && (
                      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.6 }}>
-                        <Card className="bg-primary/5 border-primary/20">
+                        <Card className="bg-blue-50 border-blue-200">
                            <CardHeader>
-                              <CardTitle className="text-primary">Ready to secure your passwords?</CardTitle>
+                              <CardTitle className="text-blue-600">Ready to secure your passwords?</CardTitle>
                               <CardDescription>Create an account to start using the password vault and store your passwords securely.</CardDescription>
                            </CardHeader>
                            <CardContent>
