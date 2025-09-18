@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
 import { generatePassword, calculatePasswordStrength, copyToClipboard } from "../lib/utils";
-import { Copy, RefreshCw, Eye, EyeOff, Check, Sparkles, Settings } from "lucide-react";
+import { Copy, RefreshCw, Eye, EyeOff, Check, Key, Settings } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PasswordGenerator: React.FC = () => {
@@ -51,17 +51,13 @@ const PasswordGenerator: React.FC = () => {
    return (
       <div className="w-full max-w-2xl mx-auto">
          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <Card className="border-0 shadow-xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm">
+            <Card className="shadow-lg">
                <CardHeader className="text-center pb-4">
-                  <motion.div
-                     className="mx-auto w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4"
-                     whileHover={{ scale: 1.05, rotate: 5 }}
-                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                  >
-                     <Sparkles className="w-8 h-8 text-white" />
-                  </motion.div>
-                  <CardTitle className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Password Generator</CardTitle>
-                  <CardDescription className="text-gray-600 dark:text-gray-300">Create unbreakable passwords with military-grade security</CardDescription>
+                  <div className="mx-auto w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+                     <Key className="w-8 h-8 text-white" />
+                  </div>
+                  <CardTitle className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Security Forge</CardTitle>
+                  <CardDescription className="text-gray-600 dark:text-gray-300">Craft unbreakable passwords with military precision</CardDescription>
                </CardHeader>
 
                <CardContent className="space-y-8">
@@ -255,30 +251,28 @@ const PasswordGenerator: React.FC = () => {
                   </AnimatePresence>
 
                   {/* Generate Button */}
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                     <Button
-                        onClick={handleGeneratePassword}
-                        className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg"
-                        size="lg"
-                        disabled={(!options.includeUppercase && !options.includeLowercase && !options.includeNumbers && !options.includeSymbols) || isGenerating}
-                     >
-                        <AnimatePresence mode="wait">
-                           {isGenerating ? (
-                              <motion.div key="generating" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center space-x-2">
-                                 <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }}>
-                                    <RefreshCw className="w-5 h-5" />
-                                 </motion.div>
-                                 <span>Generating...</span>
+                  <Button
+                     onClick={handleGeneratePassword}
+                     className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg"
+                     size="lg"
+                     disabled={(!options.includeUppercase && !options.includeLowercase && !options.includeNumbers && !options.includeSymbols) || isGenerating}
+                  >
+                     <AnimatePresence mode="wait">
+                        {isGenerating ? (
+                           <motion.div key="generating" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center space-x-2">
+                              <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }}>
+                                 <RefreshCw className="w-5 h-5" />
                               </motion.div>
-                           ) : (
-                              <motion.div key="generate" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center space-x-2">
-                                 <Sparkles className="w-5 h-5" />
-                                 <span>Generate Secure Password</span>
-                              </motion.div>
-                           )}
-                        </AnimatePresence>
-                     </Button>
-                  </motion.div>
+                              <span>Generating...</span>
+                           </motion.div>
+                        ) : (
+                           <motion.div key="generate" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center space-x-2">
+                              <Key className="w-5 h-5" />
+                              <span>Forge Security</span>
+                           </motion.div>
+                        )}
+                     </AnimatePresence>
+                  </Button>
 
                   {/* Copy Feedback */}
                   <AnimatePresence>
