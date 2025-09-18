@@ -5,22 +5,68 @@ export function cn(...inputs: ClassValue[]) {
    return twMerge(clsx(inputs));
 }
 
-export function generatePassword(length: number, includeUppercase: boolean, includeLowercase: boolean, includeNumbers: boolean, includeSymbols: boolean): string {
-   let charset = "";
+export function generatePassword(length: number, includeUppercase: boolean, includeLowercase: boolean, includeNumbers: boolean, includeSymbols: boolean, ensureEachType?: boolean): string {
+   if (ensureEachType === undefined) ensureEachType = false;
+   const upperCharset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+   const lowerCharset = "abcdefghijklmnopqrstuvwxyz";
+   const numberCharset = "0123456789";
+   const symbolCharset = "!@#$%^&*()_+-=[]{}|;:,.<>?";
 
-   if (includeUppercase) charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-   if (includeLowercase) charset += "abcdefghijklmnopqrstuvwxyz";
-   if (includeNumbers) charset += "0123456789";
-   if (includeSymbols) charset += "!@#$%^&*()_+-=[]{}|;:,.<>?";
+   let charset = "";
+   const requiredChars: string[] = [];
+
+   if (includeUppercase) {
+      charset += upperCharset;
+      if (ensureEachType) {
+         requiredChars.push(upperCharset.charAt(Math.floor(Math.random() * upperCharset.length)));
+      }
+   }
+   if (includeLowercase) {
+      charset += lowerCharset;
+      if (ensureEachType) {
+         requiredChars.push(lowerCharset.charAt(Math.floor(Math.random() * lowerCharset.length)));
+      }
+   }
+   if (includeNumbers) {
+      charset += numberCharset;
+      if (ensureEachType) {
+         requiredChars.push(numberCharset.charAt(Math.floor(Math.random() * numberCharset.length)));
+      }
+   }
+   if (includeSymbols) {
+      charset += symbolCharset;
+      if (ensureEachType) {
+         requiredChars.push(symbolCharset.charAt(Math.floor(Math.random() * symbolCharset.length)));
+      }
+   }
 
    if (charset === "") return "";
 
    let password = "";
-   for (let i = 0; i < length; i++) {
+
+   // Add required characters first
+   if (ensureEachType && requiredChars.length > 0) {
+      // Shuffle required characters and add them
+      for (let i = requiredChars.length - 1; i > 0; i--) {
+         const j = Math.floor(Math.random() * (i + 1));
+         [requiredChars[i], requiredChars[j]] = [requiredChars[j], requiredChars[i]];
+      }
+      password = requiredChars.join("");
+   }
+
+   // Fill remaining length with random characters
+   for (let i = password.length; i < length; i++) {
       password += charset.charAt(Math.floor(Math.random() * charset.length));
    }
 
-   return password;
+   // Shuffle the final password to avoid predictable patterns
+   const passwordArray = password.split("");
+   for (let i = passwordArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [passwordArray[i], passwordArray[j]] = [passwordArray[j], passwordArray[i]];
+   }
+
+   return passwordArray.join("");
 }
 
 export function calculatePasswordStrength(password: string): {

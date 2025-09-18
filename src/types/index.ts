@@ -1,9 +1,12 @@
+export type PasswordCategory = "Social Media" | "Email" | "Work" | "Banking" | "Shopping" | "Entertainment" | "Utilities" | "Other";
+
 export interface VaultEntry {
    id: string;
    user_id: string;
    title: string;
    username?: string;
    url?: string;
+   category: PasswordCategory;
    encrypted_password: string;
    salt: string;
    iv: string;

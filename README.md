@@ -6,26 +6,32 @@ A modern, secure password generator and vault application built with React, Vite
 
 ### Password Generator
 
--  **Customizable Length**: Generate passwords from 8 to 64 characters
+-  **Extended Length Range**: Generate passwords from 8 to 128 characters
 -  **Character Type Options**: Toggle uppercase, lowercase, numbers, and special characters
--  **Real-time Strength Analysis**: Live password strength meter with visual feedback
--  **Copy to Clipboard**: One-click password copying with visual confirmation
+-  **Ensure Each Type**: Guarantee at least one character from each selected type
+-  **Real-time Strength Analysis**: Live password strength meter with animated visual feedback
+-  **Copy to Clipboard**: One-click password copying with animated confirmation
 -  **Show/Hide Toggle**: Secure password visibility controls
+-  **Modern UI**: Gradient backgrounds, smooth animations, and dark mode support
 
 ### Secure Vault
 
 -  **Client-Side Encryption**: Passwords encrypted locally using Web Crypto API (AES-GCM)
 -  **Zero-Knowledge Architecture**: Only encrypted data stored on servers
 -  **Master Password Protection**: Your master password never leaves your device
--  **CRUD Operations**: Add, edit, delete, and organize your passwords
--  **Metadata Storage**: Store titles, usernames, and URLs with each password
--  **Search Functionality**: Quickly find passwords by title, username, or URL
+-  **Password Categories**: Organize passwords by Social Media, Email, Work, Banking, Shopping, Entertainment, Utilities, and Other
+-  **Advanced Search & Filter**: Search by title, username, URL, and filter by category
+-  **Grid/List View Toggle**: Switch between card grid and list views
+-  **CRUD Operations**: Add, edit, delete, and organize your passwords with smooth animations
+-  **Metadata Storage**: Store titles, usernames, URLs, and categories with each password
 
 ### Authentication
 
 -  **Supabase Auth**: Secure email/password authentication
+-  **Google OAuth**: Sign in with Google for quick access
 -  **Protected Routes**: Vault access requires authentication
 -  **Session Management**: Automatic session handling and refresh
+-  **Modern Auth UI**: Beautiful authentication forms with animations
 
 ### Security Features
 
@@ -34,6 +40,15 @@ A modern, secure password generator and vault application built with React, Vite
 -  **Random Salt & IV**: Unique encryption parameters for each password
 -  **No Plaintext Storage**: Passwords never stored in readable format
 -  **Row Level Security**: Database-level access control
+
+### Design & UX
+
+-  **Dark/Light Mode**: Toggle between themes with smooth transitions
+-  **Framer Motion Animations**: Smooth, performant animations throughout
+-  **Responsive Design**: Mobile-first approach with perfect desktop experience
+-  **Modern Gradients**: Beautiful gradient backgrounds and UI elements
+-  **Glassmorphism**: Backdrop blur effects for modern aesthetic
+-  **Micro-interactions**: Hover effects, button animations, and feedback
 
 ## 🛠️ Tech Stack
 

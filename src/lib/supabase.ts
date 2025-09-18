@@ -25,6 +25,7 @@ export type Database = {
                title: string;
                username?: string;
                url?: string;
+               category: string;
                encrypted_password: string;
                salt: string;
                iv: string;
@@ -37,6 +38,7 @@ export type Database = {
                title: string;
                username?: string;
                url?: string;
+               category?: string;
                encrypted_password: string;
                salt: string;
                iv: string;
@@ -49,6 +51,7 @@ export type Database = {
                title?: string;
                username?: string;
                url?: string;
+               category?: string;
                encrypted_password?: string;
                salt?: string;
                iv?: string;

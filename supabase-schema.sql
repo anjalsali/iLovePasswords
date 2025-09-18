@@ -5,6 +5,7 @@ CREATE TABLE vault_entries (
     title TEXT NOT NULL,
     username TEXT,
     url TEXT,
+    category TEXT NOT NULL DEFAULT 'Other' CHECK (category IN ('Social Media', 'Email', 'Work', 'Banking', 'Shopping', 'Entertainment', 'Utilities', 'Other')),
     encrypted_password TEXT NOT NULL,
     salt TEXT NOT NULL,
     iv TEXT NOT NULL,
