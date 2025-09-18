@@ -164,12 +164,7 @@ const AuthForm: React.FC = () => {
                   )}
 
                   {/* Submit Button */}
-                  <Button
-                     type="submit"
-                     className="w-full h-12 text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg"
-                     size="lg"
-                     disabled={loading}
-                  >
+                  <Button type="submit" className="w-full h-12 text-lg font-semibold bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 shadow-lg" size="lg" disabled={loading}>
                      {loading ? "Processing..." : isSignUp ? "Create Account" : "Sign In"}
                   </Button>
 
