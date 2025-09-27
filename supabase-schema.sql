@@ -1,3 +1,22 @@
+-- Create the user_master_passwords table for storing master password hashes
+CREATE TABLE user_master_passwords (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL
+);
+
+-- Create an index on user_id for faster queries
+CREATE INDEX idx_user_master_passwords_user_id ON user_master_passwords(user_id);
+
+-- Enable Row Level Security (RLS) for master passwords
+ALTER TABLE user_master_passwords ENABLE ROW LEVEL SECURITY;
+
+-- Create policy to allow users to only access their own master password
+CREATE POLICY "Users can only access their own master password" ON user_master_passwords
+    FOR ALL USING (auth.uid() = user_id);
+
 -- Create the vault_entries table for storing encrypted passwords
 CREATE TABLE vault_entries (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -37,5 +56,10 @@ $$ language 'plpgsql';
 
 CREATE TRIGGER update_vault_entries_updated_at
     BEFORE UPDATE ON vault_entries
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_user_master_passwords_updated_at
+    BEFORE UPDATE ON user_master_passwords
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();

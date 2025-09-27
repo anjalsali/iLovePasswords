@@ -1,17 +1,8 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import { supabase } from "../lib/supabase";
 import type { AuthContextType } from "../types";
-
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
-export const useAuth = () => {
-   const context = useContext(AuthContext);
-   if (context === undefined) {
-      throw new Error("useAuth must be used within an AuthProvider");
-   }
-   return context;
-};
+import { AuthContext } from "./AuthContext";
 
 interface AuthProviderProps {
    children: React.ReactNode;
@@ -24,10 +15,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
    useEffect(() => {
       // Get initial session
       const getInitialSession = async () => {
+         console.log("🔄 Getting initial session...");
          const {
             data: { session },
          } = await supabase.auth.getSession();
-         setUser(session?.user ?? null);
+         const currentUser = session?.user ?? null;
+         console.log("👤 Current user:", currentUser?.email || "none");
+         setUser(currentUser);
+         console.log("✅ Initial session check complete");
          setLoading(false);
       };
 
@@ -36,8 +31,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       // Listen for auth changes
       const {
          data: { subscription },
-      } = supabase.auth.onAuthStateChange(async (_event, session) => {
-         setUser(session?.user ?? null);
+      } = supabase.auth.onAuthStateChange(async (event, session) => {
+         console.log("🔄 Auth state changed:", event);
+         const newUser = session?.user ?? null;
+         console.log("👤 New user:", newUser?.email || "none");
+         setUser(newUser);
+         console.log("✅ Auth state change complete");
          setLoading(false);
       });
 
@@ -64,7 +63,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const { error } = await supabase.auth.signInWithOAuth({
          provider: "google",
          options: {
-            redirectTo: `${window.location.origin}/vault`,
+            redirectTo: `${window.location.origin}/dashboard`,
          },
       });
       if (error) throw error;

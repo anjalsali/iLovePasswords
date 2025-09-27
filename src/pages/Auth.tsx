@@ -1,7 +1,7 @@
 import React from "react";
 import AuthForm from "../components/AuthForm";
 import { Link } from "react-router-dom";
-import { useTheme } from "../contexts/ThemeContext";
+import { useTheme } from "../hooks/useTheme";
 import { Shield, ArrowLeft, Moon, Sun } from "lucide-react";
 import { motion } from "framer-motion";
 

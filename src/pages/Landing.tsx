@@ -1,14 +1,14 @@
 import React from "react";
-import PasswordGenerator from "../components/PasswordGenerator";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/Card";
 import { Button } from "../components/ui/Button";
-import { useAuth } from "../contexts/AuthContext";
-import { useTheme } from "../contexts/ThemeContext";
-import { Link } from "react-router-dom";
-import { Shield, Lock, Key, Zap, Moon, Sun, Database, ArrowRight, Github } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useAuth } from "../hooks/useAuth";
+import { useTheme } from "../hooks/useTheme";
+import { Shield, Key, Zap, Moon, Sun, Database, ArrowRight, Github } from "lucide-react";
+import PasswordGeneratorCard from "../components/PasswordGeneratorCard";
 
-const Home: React.FC = () => {
+const Landing: React.FC = () => {
    const { user, signOut } = useAuth();
    const { theme, toggleTheme } = useTheme();
    const { scrollYProgress } = useScroll();
@@ -85,10 +85,10 @@ const Home: React.FC = () => {
 
                      {user ? (
                         <div className="flex items-center space-x-4">
-                           <Link to="/vault">
+                           <Link to="/dashboard">
                               <Button variant="outline">
-                                 <Lock className="w-4 h-4 mr-2" />
-                                 My Vault
+                                 <Key className="w-4 h-4 mr-2" />
+                                 Dashboard
                               </Button>
                            </Link>
                            <div className="flex items-center space-x-2">
@@ -145,10 +145,10 @@ const Home: React.FC = () => {
                         </a>
                      </>
                   ) : (
-                     <Link to="/vault">
+                     <Link to="/dashboard">
                         <Button size="lg" className="bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-lg px-8 py-4 shadow-lg">
-                           <Lock className="w-5 h-5 mr-2" />
-                           Open Your Vault
+                           <Key className="w-5 h-5 mr-2" />
+                           Access Dashboard
                            <ArrowRight className="w-5 h-5 ml-2" />
                         </Button>
                      </Link>
@@ -177,7 +177,11 @@ const Home: React.FC = () => {
          <section className="min-h-screen flex items-center justify-center py-16" id="generator">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                <motion.div variants={scrollVariants} initial="hidden" whileInView="visible" viewport={{ once: false, margin: "-100px" }}>
-                  <PasswordGenerator />
+                  <div className="text-center mb-8">
+                     <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Try Our Password Generator</h2>
+                     <p className="text-gray-600 dark:text-gray-400">Generate secure passwords instantly with our advanced tool</p>
+                  </div>
+                  <PasswordGeneratorCard />
                </motion.div>
             </div>
          </section>
@@ -301,4 +305,4 @@ const Home: React.FC = () => {
    );
 };
 
-export default Home;
+export default Landing;

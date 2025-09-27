@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/Card";
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import { motion } from "framer-motion";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const AuthForm: React.FC = () => {
    const [isSignUp, setIsSignUp] = useState(false);
@@ -18,6 +19,7 @@ const AuthForm: React.FC = () => {
    const [success, setSuccess] = useState("");
 
    const { signIn, signUp, signInWithGoogle } = useAuth();
+   const navigate = useNavigate();
 
    const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
@@ -43,9 +45,11 @@ const AuthForm: React.FC = () => {
             setSuccess("Account created successfully! Please check your email to verify your account.");
          } else {
             await signIn(email, password);
+            // Redirect to dashboard after successful login
+            navigate("/dashboard");
          }
-      } catch (error: any) {
-         setError(error.message || "An error occurred");
+      } catch (error: unknown) {
+         setError(error instanceof Error ? error.message : "An error occurred");
       } finally {
          setLoading(false);
       }
@@ -56,8 +60,8 @@ const AuthForm: React.FC = () => {
       setLoading(true);
       try {
          await signInWithGoogle();
-      } catch (error: any) {
-         setError(error.message || "Failed to sign in with Google");
+      } catch (error: unknown) {
+         setError(error instanceof Error ? error.message : "Failed to sign in with Google");
          setLoading(false);
       }
    };
@@ -76,7 +80,7 @@ const AuthForm: React.FC = () => {
             <CardHeader className="text-center">
                <CardTitle className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">{isSignUp ? "Create Account" : "Welcome Back"}</CardTitle>
                <CardDescription className="text-gray-600 dark:text-gray-300">
-                  {isSignUp ? "Create an account to securely store your passwords" : "Sign in to access your password vault"}
+                  {isSignUp ? "Create an account to access the password generator" : "Sign in to access the password generator"}
                </CardDescription>
             </CardHeader>
             <CardContent>
