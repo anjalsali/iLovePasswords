@@ -7,8 +7,12 @@ import { motion } from "framer-motion";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const AuthForm: React.FC = () => {
-   const [isSignUp, setIsSignUp] = useState(false);
+interface AuthFormProps {
+   defaultMode?: "signin" | "signup";
+}
+
+const AuthForm: React.FC<AuthFormProps> = ({ defaultMode = "signin" }) => {
+   const [isSignUp, setIsSignUp] = useState(defaultMode === "signup");
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
    const [confirmPassword, setConfirmPassword] = useState("");

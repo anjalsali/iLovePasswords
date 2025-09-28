@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../co
 import { Button } from "../components/ui/Button";
 import { useAuth } from "../hooks/useAuth";
 import { useTheme } from "../hooks/useTheme";
-import { Shield, Key, Zap, Moon, Sun, Database, ArrowRight, Github } from "lucide-react";
+import { Shield, Key, Zap, Moon, Sun, Database, ArrowRight, Github, User, UserPlus } from "lucide-react";
 import PasswordGeneratorCard from "../components/PasswordGeneratorCard";
 
 const Landing: React.FC = () => {
@@ -79,10 +79,6 @@ const Landing: React.FC = () => {
                   </div>
 
                   <nav className="flex items-center space-x-4">
-                     <button onClick={toggleTheme} className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                        {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-                     </button>
-
                      {user ? (
                         <div className="flex items-center space-x-4">
                            <Link to="/dashboard">
@@ -102,13 +98,25 @@ const Landing: React.FC = () => {
                            </Button>
                         </div>
                      ) : (
-                        <Link to="/auth">
-                           <Button className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
-                              <Key className="w-4 h-4 mr-2" />
-                              Sign In
-                           </Button>
-                        </Link>
+                        <div className="flex items-center space-x-3">
+                           <Link to="/auth">
+                              <Button className="bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600">
+                                 <User className="w-4 h-4 mr-2" />
+                                 Sign In
+                              </Button>
+                           </Link>
+                           <Link to="/signup">
+                              <Button className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
+                                 <UserPlus className="w-4 h-4 mr-2" />
+                                 Sign Up
+                              </Button>
+                           </Link>
+                        </div>
                      )}
+
+                     <button onClick={toggleTheme} className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                     </button>
                   </nav>
                </div>
             </div>
@@ -132,15 +140,24 @@ const Landing: React.FC = () => {
                   {!user ? (
                      <>
                         <Link to="/auth">
+                           <Button size="lg" className="bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-lg px-8 py-4 shadow-lg">
+                              <User className="w-5 h-5 mr-2" />
+                              Sign In
+                              <ArrowRight className="w-5 h-5 ml-2" />
+                           </Button>
+                        </Link>
+                        <Link to="/signup">
                            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-lg px-8 py-4 shadow-lg">
-                              <Key className="w-5 h-5 mr-2" />
-                              Get Started
+                              <UserPlus className="w-5 h-5 mr-2" />
+                              Sign Up
                               <ArrowRight className="w-5 h-5 ml-2" />
                            </Button>
                         </Link>
                         <a href="#generator">
-                           <Button variant="outline" size="lg" className="text-lg px-8 py-4">
+                           <Button size="lg" className="bg-purple-600 hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600 text-lg px-8 py-4 shadow-lg">
+                              <Key className="w-5 h-5 mr-2" />
                               Try Generator
+                              <ArrowRight className="w-5 h-5 ml-2" />
                            </Button>
                         </a>
                      </>
@@ -265,13 +282,22 @@ const Landing: React.FC = () => {
                            </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-4">
-                           <Link to="/auth">
-                              <Button size="lg" className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-lg py-6 shadow-lg">
-                                 <Key className="w-5 h-5 mr-2" />
-                                 Begin Your Protection
-                                 <ArrowRight className="w-5 h-5 ml-2" />
-                              </Button>
-                           </Link>
+                           <div className="flex flex-col sm:flex-row gap-3">
+                              <Link to="/auth" className="flex-1">
+                                 <Button size="lg" className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-lg py-6 shadow-lg">
+                                    <User className="w-5 h-5 mr-2" />
+                                    Sign In
+                                    <ArrowRight className="w-5 h-5 ml-2" />
+                                 </Button>
+                              </Link>
+                              <Link to="/signup" className="flex-1">
+                                 <Button size="lg" className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-lg py-6 shadow-lg">
+                                    <UserPlus className="w-5 h-5 mr-2" />
+                                    Sign Up
+                                    <ArrowRight className="w-5 h-5 ml-2" />
+                                 </Button>
+                              </Link>
+                           </div>
                            <p className="text-sm text-center text-gray-500 dark:text-gray-400">Free to use • Secure encryption • No ads</p>
                         </CardContent>
                      </Card>

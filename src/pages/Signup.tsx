@@ -2,10 +2,10 @@ import React from "react";
 import AuthForm from "../components/AuthForm";
 import { Link } from "react-router-dom";
 import { useTheme } from "../hooks/useTheme";
-import { Shield, ArrowLeft, Moon, Sun, Lock } from "lucide-react";
+import { Shield, ArrowLeft, Moon, Sun, Lock, UserPlus } from "lucide-react";
 import { motion } from "framer-motion";
 
-const Auth: React.FC = () => {
+const Signup: React.FC = () => {
    const { theme, toggleTheme } = useTheme();
 
    return (
@@ -55,15 +55,15 @@ const Auth: React.FC = () => {
                {/* Welcome Section */}
                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-center mb-8">
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-4">
-                     <Shield className="w-8 h-8 text-white" />
+                     <UserPlus className="w-8 h-8 text-white" />
                   </div>
-                  <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Welcome Back</h1>
-                  <p className="text-gray-600 dark:text-gray-400">Sign in to access your secure password vault</p>
+                  <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Create Account</h1>
+                  <p className="text-gray-600 dark:text-gray-400">Join us to secure your digital life with our password manager</p>
                </motion.div>
 
                {/* Auth Form */}
                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-                  <AuthForm />
+                  <AuthForm defaultMode="signup" />
                </motion.div>
 
                {/* Security Notice */}
@@ -78,10 +78,20 @@ const Auth: React.FC = () => {
                      <span className="text-sm font-medium">Your data is protected with end-to-end encryption</span>
                   </div>
                </motion.div>
+
+               {/* Sign In Link */}
+               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="mt-6 text-center">
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                     Already have an account?{" "}
+                     <Link to="/auth" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium hover:underline">
+                        Sign in here
+                     </Link>
+                  </p>
+               </motion.div>
             </div>
          </div>
       </div>
    );
 };
 
-export default Auth;
+export default Signup;

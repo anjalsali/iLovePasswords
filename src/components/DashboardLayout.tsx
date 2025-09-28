@@ -35,7 +35,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
    const isActive = (href: string) => location.pathname === href;
 
    return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300 flex">
+      <div className="h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300 flex">
          {/* Mobile sidebar overlay */}
          <AnimatePresence>
             {sidebarOpen && (
