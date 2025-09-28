@@ -7,6 +7,7 @@ import { useAuth } from "../hooks/useAuth";
 import { useTheme } from "../hooks/useTheme";
 import { Shield, Key, Zap, Moon, Sun, Database, ArrowRight, Github, User, UserPlus } from "lucide-react";
 import PasswordGeneratorCard from "../components/PasswordGeneratorCard";
+import logoImage from "../assets/ilovepasswordslogo.png";
 
 const Landing: React.FC = () => {
    const { user, signOut } = useAuth();
@@ -69,8 +70,8 @@ const Landing: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                <div className="flex justify-between items-center py-4">
                   <div className="flex items-center space-x-3">
-                     <div className="w-10 h-10 bg-blue-600 dark:bg-blue-500 rounded-lg flex items-center justify-center shadow-lg">
-                        <Shield className="w-6 h-6 text-white" />
+                     <div className="w-10 h-10 rounded-lg flex items-center justify-center shadow-lg overflow-hidden">
+                        <img src={logoImage} alt="iLovePasswords Logo" className="w-full h-full object-contain" />
                      </div>
                      <div>
                         <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">iLovePasswords</span>
@@ -317,8 +318,8 @@ const Landing: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                <div className="text-center">
                   <div className="flex items-center justify-center space-x-2 mb-4">
-                     <div className="w-8 h-8 bg-blue-600 dark:bg-blue-500 rounded-lg flex items-center justify-center">
-                        <Shield className="w-5 h-5 text-white" />
+                     <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden">
+                        <img src={logoImage} alt="iLovePasswords Logo" className="w-full h-full object-contain" />
                      </div>
                      <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">iLovePasswords</span>
                   </div>

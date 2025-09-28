@@ -8,6 +8,7 @@ import { useAuth } from "../hooks/useAuth";
 import { Shield, Key, Database, TrendingUp, Clock, Eye, Lock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import type { DashboardStats, CreateVaultEntryData } from "../types";
+import logoImage from "../assets/ilovepasswordslogo.png";
 
 const Dashboard: React.FC = () => {
    const { user } = useAuth();
@@ -83,8 +84,8 @@ const Dashboard: React.FC = () => {
                className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-8 border border-blue-200 dark:border-blue-800"
             >
                <div className="text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-4">
-                     <Shield className="w-8 h-8 text-white" />
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 overflow-hidden">
+                     <img src={logoImage} alt="iLovePasswords Logo" className="w-full h-full object-contain" />
                   </div>
                   <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">Welcome back, {user?.email?.split("@")[0]}! 👋</h1>
                   <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">Your digital security dashboard is ready</p>

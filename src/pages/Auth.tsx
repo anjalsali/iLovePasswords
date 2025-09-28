@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useTheme } from "../hooks/useTheme";
 import { Shield, ArrowLeft, Moon, Sun, Lock } from "lucide-react";
 import { motion } from "framer-motion";
+import logoImage from "../assets/ilovepasswordslogo.png";
 
 const Auth: React.FC = () => {
    const { theme, toggleTheme } = useTheme();
@@ -20,8 +21,8 @@ const Auth: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                <div className="flex justify-between items-center py-4">
                   <div className="flex items-center space-x-3">
-                     <div className="w-10 h-10 bg-blue-600 dark:bg-blue-500 rounded-lg flex items-center justify-center shadow-lg">
-                        <Shield className="w-6 h-6 text-white" />
+                     <div className="w-10 h-10 rounded-lg flex items-center justify-center shadow-lg overflow-hidden">
+                        <img src={logoImage} alt="iLovePasswords Logo" className="w-full h-full object-contain" />
                      </div>
                      <div>
                         <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">iLovePasswords</span>
@@ -54,8 +55,8 @@ const Auth: React.FC = () => {
             <div className="w-full max-w-md">
                {/* Welcome Section */}
                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-center mb-8">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-4">
-                     <Shield className="w-8 h-8 text-white" />
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 overflow-hidden">
+                     <img src={logoImage} alt="iLovePasswords Logo" className="w-full h-full object-contain" />
                   </div>
                   <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Welcome Back</h1>
                   <p className="text-gray-600 dark:text-gray-400">Sign in to access your secure password vault</p>
