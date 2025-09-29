@@ -2,7 +2,7 @@ import React from "react";
 import AuthForm from "../components/AuthForm";
 import { Link } from "react-router-dom";
 import { useTheme } from "../hooks/useTheme";
-import { Shield, ArrowLeft, Moon, Sun, Lock } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Lock } from "lucide-react";
 import { motion } from "framer-motion";
 import logoImage from "../assets/ilovepasswordslogo.png";
 
