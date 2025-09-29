@@ -3,15 +3,14 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/Card";
 import { Button } from "../components/ui/Button";
+import Navbar from "../components/Navbar";
 import { useAuth } from "../hooks/useAuth";
-import { useTheme } from "../hooks/useTheme";
-import { Shield, Key, Zap, Moon, Sun, Database, ArrowRight, Github, User, UserPlus } from "lucide-react";
+import { Shield, Key, Zap, Database, ArrowRight, Github, User, UserPlus } from "lucide-react";
 import PasswordGeneratorCard from "../components/PasswordGeneratorCard";
 import logoImage from "../assets/ilovepasswordslogo.png";
 
 const Landing: React.FC = () => {
-   const { user, signOut } = useAuth();
-   const { theme, toggleTheme } = useTheme();
+   const { user } = useAuth();
    const { scrollYProgress } = useScroll();
 
    // Parallax effects for hero section
@@ -50,78 +49,10 @@ const Landing: React.FC = () => {
       },
    };
 
-   const handleSignOut = async () => {
-      try {
-         await signOut();
-      } catch (error) {
-         console.error("Sign out error:", error);
-      }
-   };
-
    return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-         {/* Header */}
-         <motion.header
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50"
-         >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-               <div className="flex justify-between items-center py-4">
-                  <div className="flex items-center space-x-3">
-                     <div className="w-10 h-10 rounded-lg flex items-center justify-center shadow-lg overflow-hidden">
-                        <img src={logoImage} alt="iLovePasswords Logo" className="w-full h-full object-contain" />
-                     </div>
-                     <div>
-                        <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">iLovePasswords</span>
-                        <div className="text-xs text-gray-600 dark:text-gray-400">Secure Password Manager</div>
-                     </div>
-                  </div>
-
-                  <nav className="flex items-center space-x-4">
-                     {user ? (
-                        <div className="flex items-center space-x-4">
-                           <Link to="/dashboard">
-                              <Button variant="outline">
-                                 <Key className="w-4 h-4 mr-2" />
-                                 Dashboard
-                              </Button>
-                           </Link>
-                           <div className="flex items-center space-x-2">
-                              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                                 <span className="text-xs font-bold text-white">{user.email?.charAt(0).toUpperCase()}</span>
-                              </div>
-                              <span className="text-sm text-gray-600 dark:text-gray-400 hidden sm:block">{user.email}</span>
-                           </div>
-                           <Button variant="ghost" size="sm" onClick={handleSignOut}>
-                              Sign Out
-                           </Button>
-                        </div>
-                     ) : (
-                        <div className="flex items-center space-x-3">
-                           <Link to="/auth">
-                              <Button className="bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600">
-                                 <User className="w-4 h-4 mr-2" />
-                                 Sign In
-                              </Button>
-                           </Link>
-                           <Link to="/signup">
-                              <Button className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
-                                 <UserPlus className="w-4 h-4 mr-2" />
-                                 Sign Up
-                              </Button>
-                           </Link>
-                        </div>
-                     )}
-
-                     <button onClick={toggleTheme} className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                        {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-                     </button>
-                  </nav>
-               </div>
-            </div>
-         </motion.header>
+         {/* Navbar */}
+         <Navbar />
 
          {/* Hero Section */}
          <section className="relative min-h-screen flex items-center justify-center">
